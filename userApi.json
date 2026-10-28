@@ -1,0 +1,108 @@
+{
+  "info": {
+    "name": "TraineeBase - Standardized API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "GET All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users"]
+            }
+          },
+          "response": [
+            {
+              "name": "Standardized Success Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/users",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "users"]
+                }
+              },
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Operation completed successfully\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"username\": \"john_doe\",\n      \"email\": \"john@example.com\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\"\n    }\n  ],\n  \"timestamp\": \"2024-01-15T14:25:30.123\",\n  \"statusCode\": 200,\n  \"status\": \"OK\",\n  \"apiVersion\": \"1.0\",\n  \"path\": \"/api/v1/users\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET User by ID - Success",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", "1"]
+            }
+          }
+        },
+        {
+          "name": "GET User by ID - Not Found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", "999"]
+            }
+          },
+          "response": [
+            {
+              "name": "Standardized Error Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/users/999",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "users", "999"]
+                }
+              },
+              "code": 404,
+              "body": "{\n  \"success\": false,\n  \"message\": \"User with id 999 not found\",\n  \"timestamp\": \"2024-01-15T14:25:30.123\",\n  \"statusCode\": 404,\n  \"status\": \"Not Found\",\n  \"apiVersion\": \"1.0\",\n  \"path\": \"/api/v1/users/999\",\n  \"errorCode\": \"NOT_FOUND\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "POST Create User - Validation Error",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"\",\n  \"email\": \"invalid-email\",\n  \"password\": \"123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}
